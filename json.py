@@ -3,11 +3,14 @@ import traceback
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.db.models.query import QuerySet
+from django.core.serializers import serialize
 
 def json_response(function):
     """
     Decorator (@json_response) that encapsulates the result into a
     JsonResponse object and handle exceptions
+    
+    Nota : decorated function should accept one and only one argument : request
     """
     def _decorated_function(request):
         try:
